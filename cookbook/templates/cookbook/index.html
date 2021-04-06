@@ -1,0 +1,56 @@
+{% load static %}
+<html {% if LANGUAGE_CODE %}lang="{{ LANGUAGE_CODE }}" {% endif %}>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>PuzzleCookbook</title>
+<!--  <link rel="stylesheet" href="stylesheet.css">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(260, 192, 158)">
+    <a class="navbar-brand" href="/">PuzzleCookbook</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/">Ingredients <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/search/1">Recipes</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3" style="color: rgb(0,0,0);">PuzzleCookbookAPP</h1>
+      <p class="card-text" style="font-size: 25px; color: rgb(0, 0, 0);">Helps You Cook With What You Have in Your Kitchen</p>
+    </div>
+  </div>
+
+  <section class="ingredient-section">
+    <h1 class="card-title">Ingredients </h1>
+    <h6 class="card-subtitle mb-2 text-muted">Click on the ingredient and find matching recipes</h6>
+    <br />
+<!--    <div class="card-deck">-->
+<!--      {% for ingredient in all_ingredients %}-->
+<!--      <button class="searchbutton" id={{ingredient.id}}>-->
+<!--        <div class="card" style="max-width: 250px;">-->
+<!--          <img style="width: 250px; height: 250px;" src={{ingredient.img_url}} alt="ingredient" class="card-img-top">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">{{ingredient.name}}</h5>-->
+<!--            <p class="card-text text-muted">{{ingredient.property}}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </button>-->
+<!--      {% endfor %}-->
+<!--    </div>-->
+  </section>
+</body>
+
+</html>
