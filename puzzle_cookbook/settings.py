@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'yj4@*4n=)&6so9!k_jz%0944yn!&3@pn9d3taf!@m1^2r*ndj7'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -56,7 +54,7 @@ ROOT_URLCONF = 'puzzle_cookbook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'cookbook/templates/cookbook', 'accounts/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'puzzle_cookbook.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -85,7 +82,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -105,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -119,8 +114,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SPOONACULAR_DATA_API_KEY_2 = '770330da8b764d52891b68d0d7eaa372'
+SPOONACULAR_DATA_API_KEY_3 = '1c11a4968bf74a0e9be0423f770f7f27'
+SPOONACULAR_DATA_API_KEY = '41bb2f16812c46c7ab9e6b55a0c0a522'
+
+LOGIN_REDIRECT_URL = '/cookbook/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -1,42 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import User
+from accounts.models import MyUser
 
-class IngredientCategoryChoices(models.TextChoices):
-    pass
+class FoodRecipeDishType(models.TextChoices):
+    BREAKFAST = 'BF', 'breakfast'
+    SALAD = 'SD', 'salad'
+    APPETIZER = 'AP', 'appetizer'
+    SOUP = 'SP', 'soup'
+    MAIN_COURSE = 'MC', 'main course'
+    DESSERT = 'DS', 'dessert'
 
-class FoodRecipeCuisineType(models.TextChoices):
-    pass
 
 class Ingredient(models.Model):
     ingredient_name = models.CharField(max_length=128)
-    category = models.CharField(max_length=128) # choicefield
-    kcal_value_100g = models.FloatField()
 
     def __str__(self):
         return self.ingredient_name
 
 
 class FoodRecipe(models.Model):
-    dish_name = models.CharField(max_length=128)
-    dish_type = models.CharField(max_length=10)  #choicefield
-    cuisine_type = models.CharField(max_length=128)
-    preparation_time = models.IntegerField()  # info (sek, min)
-    servings_number = models.IntegerField() # choicefield
-    # ingredients = models.ManyToManyField(Ingredient, related_name="food_recipes")
-    description = models.TextField()
-    user_profiles = models.ManyToManyField(User, related_name="users")
+    dish_title = models.CharField(max_length=128)
+    dish_type = models.CharField(max_length=2, choices=FoodRecipeDishType.choices)
+    preparation_time = models.IntegerField()
+    ingredients = models.ManyToManyField(Ingredient, related_name="food_recipes")
+    favourites = models.ManyToManyField(User, related_name="favourites", default=None, blank=True)
 
-    def __str__(self):
-        return self.dish_name
-
-    @property
-    def calculate_kcal_value(self):
-        pass
-
-
-class FoodRecipeIngredient(models.Model):
-    amount = models.IntegerField()
-    unit = models.CharField(max_length=10) # choicefield
-    ingredient = models.OneToOneField(Ingredient, on_delete=models.CASCADE)
-    recipe = models.ForeignKey(FoodRecipe, on_delete=models.CASCADE, related_name="ingredients")
 
