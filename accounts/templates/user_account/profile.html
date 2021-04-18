@@ -6,6 +6,24 @@
         <div class="container">
             <h1>{{ user.username }}'s favorites recipes</h1>
             <br>
+             {% for recipe in recipes %}
+                <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ recipe.image }}"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+                    <div class="card-body">
+                      <p class="card-text">{{ recipe.dish_name }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <form method="get" action="{% url 'cookbook:recipes_details' id=recipe.id %}">
+                            <button type="submit">View</button>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
              <a class="nav-item nav-link active" href="/">Find some new recipes</a>
             <p>
                 <a href="{% url 'accounts:logout' %}" class="btn btn-primary my-2">Logout</a>

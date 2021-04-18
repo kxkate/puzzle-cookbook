@@ -22,7 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cookbook.urls', namespace='cookbook')),
-    path('account/', include('accounts.urls', namespace='accounts')),
+    # path('account/', include('accounts.urls', namespace='myaccounts')),
     path('account/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
     # path('accounts/', include('django.contrib.auth.urls')),

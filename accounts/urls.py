@@ -7,7 +7,7 @@ app_name = 'accounts'
 
 
 urlpatterns = [
-    path('my-login/', auth_views.LoginView.as_view(template_name="registration/login.html",
+    path('mylogin/', auth_views.LoginView.as_view(template_name="registration/login.html",
                                                 authentication_form=UserLoginForm), name='mylogin'),
     path('', include('django.contrib.auth.urls')),
     path('profile/', views.profile, name='profile'),
