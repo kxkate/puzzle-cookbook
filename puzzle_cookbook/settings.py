@@ -121,10 +121,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SPOONACULAR_DATA_API_KEY = '770330da8b764d52891b68d0d7eaa372'
-SPOONACULAR_DATA_API_KEY_3 = '1c11a4968bf74a0e9be0423f770f7f27'
+SPOONACULAR_DATA_API_KEY_3 = '770330da8b764d52891b68d0d7eaa372'
+SPOONACULAR_DATA_API_KEY = '1c11a4968bf74a0e9be0423f770f7f27'
 SPOONACULAR_DATA_API_KEY_2 = '41bb2f16812c46c7ab9e6b55a0c0a522'
 
 LOGIN_REDIRECT_URL = '/cookbook/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+#
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
+

@@ -23,11 +23,14 @@
       {% endfor %}
       </ul>
       <div>
-          <form method='post' action=" {% url 'cookbook:add_favourites' %}">
-              {% csrf_token %}
-              <input name="id" value="{{ recipe_det.id }}" hidden>
-              <button class="edit-user" type="submit">Add to Favourites</button>
-          </form>
+          {% if not id in user.my_favourites %}
+            <form method='post' action=" {% url 'cookbook:add_favourites' %}">
+                {% csrf_token %}
+                <input name="id" value="{{ recipe_det.id }}" hidden>
+                <button class="edit-user" type="submit">Add to Favourites</button>
+            </form>
+
+          {% endif %}
       </div>
             </div>
           </section>
