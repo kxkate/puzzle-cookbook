@@ -9,7 +9,7 @@ from .forms import RegistrationForm
 from .tokens import account_activation_token
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from cookbook.models import FoodRecipe
+
 
 
 from django.contrib.auth.views import (LoginView, PasswordChangeView,
