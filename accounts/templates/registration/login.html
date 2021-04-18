@@ -1,40 +1,93 @@
+{% extends "../base/base.html" %}
 {% load static %}
-<html {% if LANGUAGE_CODE %}lang="{{ LANGUAGE_CODE }}" {% endif %}>
+{% block title %}Log-in{% endblock %}
+{% block content %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="{%  static 'cookbook/favicon.ico' %}">
-  <title>PuzzleCookbook</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-</head>
-<body>
+{% if request.user.is_authenticated %}
+<script>
+    window.location.href = '{% url "accounts:profile" %}';
+</script>
+{% endif %}
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(219, 154, 218)">
-    <a class="navbar-brand" href="/cookbook/">PuzzleCookbook</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-</nav>
-<main role="main">
+<style>
+    .login,
+    .image {
+        min-height: 100vh;
+    }
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">PuzzleCookbook</h1>
-      <p class="lead text-muted">Cook With What You Have in Your Kitchen</p>
-<!--      <form action=" {% url 'cookbook:recipes_search' %}" method="POST">-->
-          <form method="POST">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <input type="Submit" name = "submit" value="Log In" ></input>
-      </form>
+    .bg-image {
+        background-image: url('https://media.istockphoto.com/photos/confused-man-looking-at-food-in-refrigerator-picture-id1050851162?k=6&m=1050851162&s=612x612&w=0&h=_RNHtwaKBHftsPqBl9lIPXw7drM-D0bo-9BPPbaqCz4=');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .container-fluid {
+        max-width: 100%;
+    }
+
+    .account-form input {
+        border: 2px solid #ccc;
+        height: calc(2em + .75rem + 2px);
+    }
+
+    .account-form input:focus {
+        border-color: #1497ff;
+        box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0px rgba(255, 0, 0, 0.6);
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-12  mx-auto">
+
+                            <form class="account-form p-4 rounded" action="{% url 'accounts:login' %}" method="post">
+
+                                {% csrf_token %}
+                                <p class="h4 mb-4 font-weight-bold">Sign In</p>
+
+                                {% if form.errors %}
+                                <div class="alert alert-primary" role="alert">
+                                    Error: Username or Password not correct!
+                                </div>
+                                {% endif %}
+
+                                <label class="small font-weight-bold">{{ form.username.label}}</label>
+                                {{ form.username}}
+                                <br>
+                                <label class="small font-weight-bold">{{ form.password.label}}</label>
+                                {{ form.password}}
+
+                                <button class="btn btn-dark btn-block py-2 mb-4 mt-5 font-weight-bold" type="submit"
+                                    value="Log-in">Sign
+                                    in</button>
+
+                                <p class="small font-weight-bold text-center pb-3">
+                                    <a href="{% url 'accounts:register' %}">New to PuzzleCookbook? Create an account to collect your favorite recipes</a>
+                                </p>
+
+                                <hr class="mb-3">
+                                <p class="small text-center">By signing in to your account, you agree to PuzzleCookbook <a
+                                        href="">Terms of
+                                        Service</a> and
+                                    consent to
+                                    our <a href="">Cookie Policy</a> and <a href="">Privacy Policy</a>.
+                            </form>
+                            <p class="small text-center pt-4">
+                                <a href="{% url 'accounts:password_reset' %}">Forgotten Password?</a>
+                            </p>
+                            <p class="small text-center">
+                                <a href="{}">Help Center?</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
     </div>
-  </section>
-
-</main>
-</body>
-</html>
+</div>
+{% endblock %}

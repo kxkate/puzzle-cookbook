@@ -1,0 +1,16 @@
+{% extends "../base/base.html" %}
+{% block title %}My profile{% endblock %}
+{% block content %}
+<div class="container">
+    <section class="jumbotron text-center bg-white">
+        <div class="container">
+            <h1>{{ user.username }}'s favorites recipes</h1>
+            <br>
+             <a class="nav-item nav-link active" href="/">Find some new recipes</a>
+            <p>
+                <a href="{% url 'accounts:logout' %}" class="btn btn-primary my-2">Logout</a>
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock %}

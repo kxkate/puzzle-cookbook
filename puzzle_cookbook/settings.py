@@ -56,7 +56,11 @@ ROOT_URLCONF = 'puzzle_cookbook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'cookbook/templates/cookbook', 'accounts/templates')],
+        'DIRS': [os.path.join(BASE_DIR,
+                              'templates',
+                              'cookbook/templates/cookbook',
+                              'accounts/templates',
+                              'accounts/templates/user_account')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,6 +79,7 @@ WSGI_APPLICATION = 'puzzle_cookbook.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
+
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'recipe_db',
@@ -120,12 +125,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR),)
 
 SPOONACULAR_DATA_API_KEY_3 = '770330da8b764d52891b68d0d7eaa372'
 SPOONACULAR_DATA_API_KEY = '1c11a4968bf74a0e9be0423f770f7f27'
 SPOONACULAR_DATA_API_KEY_2 = '41bb2f16812c46c7ab9e6b55a0c0a522'
 
-LOGIN_REDIRECT_URL = '/cookbook/'
+LOGIN_REDIRECT_URL = 'accounts:profile'
+LOGIN_URL = 'accounts:my-login'
+LOGOUT_URL = 'cookbook/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
