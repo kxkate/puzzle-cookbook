@@ -6,7 +6,6 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('', include(django.contrib.auth.urls)),
-    # path('favourites/', views.favourite_list, name='favourite_list')
 ]
 
 

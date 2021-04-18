@@ -9,7 +9,13 @@ from accounts.models import MyUser
 from django.urls import reverse
 
 from django.contrib.auth.models import User
-
+# def set_session_page(request):
+#     response = render(request, 'cookbook/set_session_page.html')
+#     if not request.session.has_key('customer'):
+#         request.session['customer'] = 'customer-name'
+#         print('session value set')
+#
+#     return response
 
 
 def view_homepage(request):
@@ -46,7 +52,7 @@ def search_recipes(request):
     return render(request, 'cookbook/homepage.html', {'form': form})
 
 @csrf_exempt
-def show_recipe_details(request,id):  ## przepisac na get, przymuje argument id - parametr w url  + TEMPLATKA
+def show_recipe_details(request,id):
     details_url = f'https://api.spoonacular.com/recipes/{id}/information'
     search_params = {
         'apiKey': settings.SPOONACULAR_DATA_API_KEY
@@ -88,32 +94,10 @@ def show_recipe_details(request,id):  ## przepisac na get, przymuje argument id 
 @login_required
 def add_favourites(request):
     id = request.POST.get('id')
-    print(id)
+    print(id, request.user)
     user1 = MyUser.objects.get(user=request.user)
     print(user1)
     user1.my_favourites.append(id)
     print(user1.my_favourites)
     user1.save()
     return HttpResponseRedirect(reverse('cookbook:recipes_details', kwargs={'id': id}))
-
-
-    # recipe = get_object_or_404(FoodRecipe, id=id)
-    # if recipe.id.filter(id=id).exists():
-    #     pass
-    # else:
-    #     FoodRecipe.objects.create(dish_title="dish1", dish_type="breakfast", preparation_time=30,
-    #                               ingredients=Ingredient.objects.get(ingredient_name='ahi tuna'),
-    #                               favourites=User.objects.get(username="Kasia"))
-    # if recipe.favourites.filter(id=request.user.id).exists():
-    #     recipe.favourites.remove(request.user)
-    # else:
-    #     recipe.favourites.add(request.user)
-
-
-
-
-
-
-
-def hello(request):
-    return HttpResponse('ingredients')
